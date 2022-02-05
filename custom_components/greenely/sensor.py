@@ -179,7 +179,7 @@ class GreenelyPricesSensor(Entity):
                     elif timestamp.date() == (today.date() + timedelta(days=1)):
                         if spot_price_data['data'][d]['price'] != None:
                             tomorrowsData.append(self.make_attribute(spot_price_data, d))
-                    elif timestamp.date() == (today.date() - timedelta(days=1)):
+                    elif timestamp.date() == (today.date() - timedelta(days=3)):
                         if spot_price_data['data'][d]['price'] != None:
                             yesterdaysData.append(self.make_attribute(spot_price_data, d))
                 self._state_attributes['current_day'] = todaysData
@@ -407,7 +407,7 @@ class GreenelyAPI():
     def get_spot_price(self):
         """Get the spot price data from the Greenely API."""
         today = datetime.today()
-        yesterday = today - timedelta(days = 1)
+        yesterday = today - timedelta(days = 3)
         tomorrow = today + timedelta(days = 2)
         start = "?from=" + str(yesterday.year) + "-" + yesterday.strftime("%m") + "-" + yesterday.strftime("%d")
         end = "&to=" + str(tomorrow.year) + "-" + tomorrow.strftime("%m") + "-" + tomorrow.strftime("%d")
