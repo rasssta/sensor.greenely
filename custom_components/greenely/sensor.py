@@ -278,7 +278,7 @@ class GreenelyUsageSensor(Entity):
 
     def make_attribute(self, date, today, response):
         points = response.get('points', None)
-        yesterday = today - timedelta(days = 2)
+        yesterday = today - timedelta(days = 3)
         daily_usage = 0
         data = {}
         yesterday_data = []
